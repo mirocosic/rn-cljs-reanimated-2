@@ -7,7 +7,7 @@
             [re-frame.core :as rf]
             ["react-native" :as rn]
             [reagent.core :as r]
-            ["react-native-reanimated" :refer [default] :rename {default reanimated}]))
+            ["react-native-reanimated" :refer [default withSpring] :rename {default reanimated}]))
 
 (def worklets (js/require "../src/js/example/bar.js"))
 
@@ -15,7 +15,9 @@
   (let [counter @(rf/subscribe [:get-counter])
         tap-enabled? @(rf/subscribe [:counter-tappable?])
         opacity-style (.opacityWorklet worklets)
-        width-style (.widthWorklet worklets)]
+        width-worklet (.widthWorklet worklets)
+        width-style (.-style ^js width-worklet)
+        shared-val (.-shared ^js width-worklet)]
 
     [:> rn/View {:style {:flex 1
                          :padding-vertical 50
@@ -30,7 +32,12 @@
       [button {:on-press #(rf/dispatch [:inc-counter])
                :disabled? (not tap-enabled?)
                :style {:background-color :blue}}
-       "Tap me, I'll count"]]
+       "Tap me, I'll count"]
+
+      [button {:on-press #(set! (.-value shared-val) (withSpring (+ 50 (rand-int 200)))) ;; se if this can be moved to worklets too.
+               :disabled? (not tap-enabled?)
+               :style {:background-color :blue}}
+       "Tap me, I'll animate"]]
 
      [:>
       (.-View reanimated)
