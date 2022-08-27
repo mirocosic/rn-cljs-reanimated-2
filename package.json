@@ -12,20 +12,20 @@
     "eas-build-post-install": "npx shadow-cljs release app"
   },
   "dependencies": {
-    "expo": "^42.0.0",
+    "expo": "^44.0.0",
     "expo-cli": "4.10.0",
-    "expo-status-bar": "~1.0.4",
-    "react": "16.13.1",
-    "react-dom": "16.13.1",
-    "react-native": "https://github.com/expo/react-native/archive/sdk-42.0.0.tar.gz",
-    "react-native-reanimated": "~2.2.0",
-    "react-native-web": "~0.13.12"
+    "expo-status-bar": "~1.2.0",
+    "react": "17.0.1",
+    "react-dom": "17.0.1",
+    "react-native": "0.64.3",
+    "react-native-reanimated": "~2.3.1",
+    "react-native-web": "0.17.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.18.10",
-    "@babel/core": "^7.18.13",
-    "@expo/webpack-config": "^0.14.0",
-    "babel-preset-expo": "8.3.0",
+    "@babel/core": "^7.12.9",
+    "@expo/webpack-config": "~0.16.2",
+    "babel-preset-expo": "9.0.2",
     "shadow-cljs": "^2.15.3"
   },
   "private": true

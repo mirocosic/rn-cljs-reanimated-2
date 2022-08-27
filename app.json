@@ -1,7 +1,8 @@
 {
   "expo": {
     "name": "CLJS React native with Reanimated 2 worklets",
-    "slug": "cljs-worklets",
+    "owner": "miromiro",
+    "slug": "cljs-reanimated-2",
     "privacy": "public",
     "platforms": [
       "ios",
