@@ -11,3 +11,6 @@ $ npx shadow-cljs watch app
 $ npm start
 ```
 This will run Expo DevTools at http://localhost:19002/
+
+## Published app in Expo 
+https://expo.dev/@miromiro/cljs-reanimated-2
