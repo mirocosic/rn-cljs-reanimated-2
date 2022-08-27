@@ -7,26 +7,15 @@
             [re-frame.core :as rf]
             ["react-native" :as rn]
             [reagent.core :as r]
-            ["./bar" :as js-module :refer [miro worklet]]
             ["react-native-reanimated" :refer [default] :rename {default reanimated}]))
 
+(def worklets (js/require "../src/js/example/bar.js"))
 
-(def shadow-splash (js/require "../assets/shadow-cljs.png"))
-(def cljs-splash (js/require "../assets/cljs.png"))
-
-
-(defn root []
+(defn root* []
   (let [counter @(rf/subscribe [:get-counter])
-        tap-enabled? @(rf/subscribe [:counter-tappable?])]
-
-    (println "HEY!")
-    (println js-module)
-    (miro)
-    (println worklet)
-    (worklet)
-
-    ;(cljs.pprint/pprint reanimated)
-    (println (.-View reanimated))
+        tap-enabled? @(rf/subscribe [:counter-tappable?])
+        opacity-style (.opacityWorklet worklets)
+        width-style (.widthWorklet worklets)]
 
     [:> rn/View {:style {:flex 1
                          :padding-vertical 50
@@ -43,8 +32,15 @@
                :style {:background-color :blue}}
        "Tap me, I'll count"]]
 
-     [:> (.-View reanimated) {:style {:background-color "red" :width 200 :height 100}}]
+     [:>
+      (.-View reanimated)
+      {:style [{:backgroundColor "red" :width 200 :height 100}
+               opacity-style
+               width-style]}]
      [:> StatusBar {:style "auto"}]]))
+
+(defn root []
+  [:f> root*])
 
 (defn start
   {:dev/after-load true}

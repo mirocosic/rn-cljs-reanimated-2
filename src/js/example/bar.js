@@ -1,12 +1,41 @@
-export default () => {
-  console.log("Hey from another JS module!")
-}
+import Animated, {
+  useSharedValue,
+  withTiming,
+  withSpring,
+  useAnimatedStyle,
+  Easing,
+  withDelay,
+} from 'react-native-reanimated';
 
-export const miro = () => {
-  console.log("Hey from miro fn!")
-}
-
-export const worklet = function someWorklet(greeting) {
+export const opacityWorklet = function () {
   'worklet';
-  console.log("Hey I'm running on the UI thread");
+
+  const opacity = useSharedValue(0)
+
+  opacity.value = withDelay(500, withTiming(1,{duration: 2000}))
+
+  const style = useAnimatedStyle(() => {
+    return {
+      opacity: opacity.value
+    };
+  });
+
+  return style
+}
+
+export const widthWorklet = function () {
+  'worklet';
+
+  const shared = useSharedValue(0)
+
+  shared.value = withDelay(500, withTiming(200,{duration: 2000}))
+
+  const style = useAnimatedStyle(() => {
+    return {
+      width: shared.value,
+      height: shared.value,
+    };
+  });
+
+  return style
 }
