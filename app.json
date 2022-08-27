@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "hello-world",
-    "slug": "reagent-expo",
+    "name": "CLJS React native with Reanimated 2 worklets",
+    "slug": "cljs-worklets",
     "privacy": "public",
     "platforms": [
       "ios",
@@ -24,6 +24,8 @@
     ],
     "ios": {
       "supportsTablet": true
-    }
+    },
+    "description": "",
+    "githubUrl": "https://github.com/mirocosic/rn-cljs-reanimated-2"
   }
 }
