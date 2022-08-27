@@ -6,14 +6,28 @@
             ["expo-status-bar" :refer [StatusBar]]
             [re-frame.core :as rf]
             ["react-native" :as rn]
-            [reagent.core :as r]))
+            [reagent.core :as r]
+            ["./bar" :as js-module :refer [miro worklet]]
+            ["react-native-reanimated" :refer [default] :rename {default reanimated}]))
+
 
 (def shadow-splash (js/require "../assets/shadow-cljs.png"))
 (def cljs-splash (js/require "../assets/cljs.png"))
 
+
 (defn root []
   (let [counter @(rf/subscribe [:get-counter])
         tap-enabled? @(rf/subscribe [:counter-tappable?])]
+
+    (println "HEY!")
+    (println js-module)
+    (miro)
+    (println worklet)
+    (worklet)
+
+    ;(cljs.pprint/pprint reanimated)
+    (println (.-View reanimated))
+
     [:> rn/View {:style {:flex 1
                          :padding-vertical 50
                          :justify-content :space-between
@@ -28,20 +42,8 @@
                :disabled? (not tap-enabled?)
                :style {:background-color :blue}}
        "Tap me, I'll count"]]
-     [:> rn/View
-      [:> rn/View {:style {:flex-direction :row
-                           :align-items :center
-                           :margin-bottom 20}}
-       [:> rn/Image {:style {:width  160
-                             :height 160}
-                     :source cljs-splash}]
-       [:> rn/Image {:style {:width  160
-                             :height 160}
-                     :source shadow-splash}]]
-      [:> rn/Text {:style {:font-weight :normal
-                           :font-size   15
-                           :color       :blue}}
-       "Using: shadow-cljs+expo+reagent+re-frame"]]
+
+     [:> (.-View reanimated) {:style {:background-color "red" :width 200 :height 100}}]
      [:> StatusBar {:style "auto"}]]))
 
 (defn start

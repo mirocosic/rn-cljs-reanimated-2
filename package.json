@@ -12,13 +12,14 @@
     "eas-build-post-install": "npx shadow-cljs release app"
   },
   "dependencies": {
-    "expo-cli": "4.10.0",
     "expo": "^42.0.0",
+    "expo-cli": "4.10.0",
+    "expo-status-bar": "~1.0.4",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-42.0.0.tar.gz",
-    "react-native-web": "~0.13.12",
-    "expo-status-bar": "~1.0.4"
+    "react-native-reanimated": "~2.2.0",
+    "react-native-web": "~0.13.12"
   },
   "devDependencies": {
     "@expo/webpack-config": "^0.14.0",
